@@ -21,11 +21,27 @@ def rotate_right(pos: int, steps: int) -> tuple[int, int]:
     for _ in range(steps):
         zeros_count = zeros_count + 1 if pos == 0 else zeros_count
         pos = 0 if pos == 99 else pos + 1
-    
     return (pos, zeros_count)
 
-if __name__ == "__main__":
-    parseInput("inputTest")
+def solve_part1(rotation_sequence: list[str]) -> int:
+    current_position = starting_position
+    zeros_count = 0
+    for rotation in rotation_sequence:
+        match rotation[0]:
+            case 'L':
+                current_position = (current_position - int(rotation[1:])) % 100
+                if current_position == 0:
+                    zeros_count += 1
+            case 'R':
+                current_position = (current_position + int(rotation[1:])) % 100
+                if current_position == 0:
+                    zeros_count += 1
+    
+    print("Zeros positions: ", zeros_count)
+
+def solve_part2(rotation_sequence: list[str]) -> int:
+    current_position = starting_position
+    zeros_count = 0
     for rotation in rotation_sequence:
         match rotation[0]:
             case 'L':
@@ -36,3 +52,8 @@ if __name__ == "__main__":
                 zeros_count += local_zeros
     
     print("Zeros positions: ", zeros_count)
+
+if __name__ == "__main__":
+    parseInput("input")
+    solve_part1(rotation_sequence)
+    solve_part2(rotation_sequence)
