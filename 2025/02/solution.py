@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+import time
 
 ids = []
 all_ids_ranges = []
@@ -66,6 +66,16 @@ def solve_part2(ids: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    parseInput("inputTest")
+    parseInput("input")
+
+    start_time_part1 = time.perf_counter()
     solve_part1(all_ids_ranges)
+    end_time_part1 = time.perf_counter()
+    elapsed_time_part1 = end_time_part1 - start_time_part1
+    print(f"Part 1 execution time: {elapsed_time_part1:.2f} s")
+
+    start_time_part2 = time.perf_counter()
     solve_part2(all_ids_ranges)
+    end_time_part2 = time.perf_counter()
+    elapsed_time_part2 = end_time_part2 - start_time_part2
+    print(f"Part 2 execution time: {elapsed_time_part2:.2f} s")
