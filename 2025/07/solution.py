@@ -11,7 +11,7 @@ def parseInput(file_name: str = "input"):
             matrix1.append(list(line.strip()))
             matrix2.append(list(line.strip()))
 
-def find_starting_position(matrix):
+def find_starting_position(matrix: list[list[str]]) -> tuple[int, int]:
     ROWS, COLS = len(matrix), len(matrix[0])
 
     for r in range(ROWS):
@@ -19,7 +19,7 @@ def find_starting_position(matrix):
             if matrix[r][c] == 'S':
                 return (r, c)
 
-def solve_part1(matrix):
+def solve_part1(matrix: list[list[str]]):
     ROWS, COLS = len(matrix), len(matrix[0])
     start = find_starting_position(matrix)
     splits = 0
@@ -53,12 +53,12 @@ def solve_part1(matrix):
         
     print(splits)
 
-def solve_part2(matrix):
+def solve_part2(matrix: list[list[str]]):
     ROWS, COLS = len(matrix), len(matrix[0])
     start = find_starting_position(matrix)
 
     @cache
-    def dfs(r, c):
+    def dfs(r: int, c: int) -> int:
         if r == ROWS:
             return 1
         if r > ROWS or c >= COLS or c < 0:

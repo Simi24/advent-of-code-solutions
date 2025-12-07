@@ -62,7 +62,7 @@ def parse_part2(file_name: str = "input"):
     
     return all_values, all_ops
 
-def solve_part1(problems_matrix):
+def solve_part1(problems_matrix: list[list[str]]):
     tot_sum = 0
     ROWS, COLS = len(problems_matrix), len(problems_matrix[0])
     for c in range(COLS):
@@ -81,7 +81,7 @@ def solve_part1(problems_matrix):
 
     print(tot_sum)
 
-def compute(data):
+def compute(data: tuple[list[list[int]], list[str]]) -> int:
     total = 0
     for values, op in zip(*data, strict=True):
         if op == "*":

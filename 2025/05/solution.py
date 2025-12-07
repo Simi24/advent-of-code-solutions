@@ -1,3 +1,4 @@
+from platform import java_ver
 import time
 
 prod_ranges = []
@@ -15,7 +16,7 @@ def parseInput(file_name: str = "input"):
                 line.strip()
                 available_ids.append(int(line))
 
-def solve_part1(prod_ranges, available_ids):
+def solve_part1(prod_ranges: list[tuple[int, int]], available_ids: list[int]):
     fresh_ingredients = []
     for id in available_ids:
         for start, end in prod_ranges:
@@ -24,24 +25,24 @@ def solve_part1(prod_ranges, available_ids):
                 break
     print(f"Part 1: Number of fresh ingredients available: {len(fresh_ingredients)}")
 
-def rearrange_prod_ranges(prod_ranges):
+def rearrange_prod_ranges(prod_ranges: list[tuple[int, int]]) -> list[tuple[int, int]]:
 
-    def isRangeContained(range1, range2):
+    def isRangeContained(range1: tuple[int, int], range2: tuple[int, int]) -> bool:
         start1, end1 = range1[0], range1[1]
         start2, end2 = range2[0], range2[1]
         return start1 >= start2 and end1 <= end2
 
-    def doesRangeContains(range1, range2):
+    def doesRangeContains(range1: tuple[int, int], range2: tuple[int, int]) -> bool:
         start1, end1 = range1[0], range1[1]
         start2, end2 = range2[0], range2[1]
         return start1 <= start2 and end1 >= end2
     
-    def isRangeLeftOverlapping(range1, range2):
+    def isRangeLeftOverlapping(range1: tuple[int, int], range2: tuple[int, int]) -> bool:
         start1, end1 = range1[0], range1[1]
         start2, end2 = range2[0], range2[1]
         return start1 <= start2 and end1 <= end2 and end1 >= start2
     
-    def isRangeRightOverlapping(range1, range2):
+    def isRangeRightOverlapping(range1: tuple[int, int], range2: tuple[int, int]) -> bool:
         start1, end1 = range1[0], range1[1]
         start2, end2 = range2[0], range2[1]
         return start1 >= start2 and end1 >= end2 and start1 <= end2
@@ -77,7 +78,7 @@ def rearrange_prod_ranges(prod_ranges):
             prod_ranges.append(current_range)
     return final_prod_ranges
 
-def solve_part2(prod_ranges):
+def solve_part2(prod_ranges: list[tuple[int, int]]):
     final_prod_ranges = rearrange_prod_ranges(prod_ranges)
     fresh_ingredients = 0
     for start, end in final_prod_ranges:
