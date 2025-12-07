@@ -33,13 +33,13 @@ def solve_part1(matrix):
         splitted = False
 
         if matrix[r][c] == '^':
-            if c-1 >= 0 and (r, c-1) and matrix[r][c-1] == ".":
+            if c-1 >= 0 and matrix[r][c-1] == ".":
                 q.append((r, c-1))
                 matrix[r][c-1] = "|"
                 splitted = True
                 q.append((r+1, c-1))
             
-            if c+1 <= COLS and (r, c+1) and matrix[r][c+1] == ".":
+            if c+1 <= COLS and matrix[r][c+1] == ".":
                 q.append((r, c+1))
                 matrix[r][c+1] = "|"
                 splitted = True
