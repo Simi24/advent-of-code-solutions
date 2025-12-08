@@ -68,16 +68,16 @@ def solve_part1(junction_boxes: list[tuple[int, int, int]]):
     print(ret)
 
 class UnionFind:
-    def __init__(self, n):
+    def __init__(self, n: int):
         self.parent = list(range(n))
         self.num_components = n
 
-    def find(self, i):
+    def find(self, i: int) -> int:
         if self.parent[i] != i:
             self.parent[i] = self.find(self.parent[i])
         return self.parent[i]
 
-    def union(self, i, j):
+    def union(self, i: int, j: int) -> bool:
         root_i = self.find(i)
         root_j = self.find(j)
         if root_i != root_j:
